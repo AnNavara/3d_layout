@@ -1,0 +1,11 @@
+{
+  "name": "3d_layout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devserver": "browser-sync start --server --files 'index.html, css/*.css'"
+  },
+  "author": "",
+  "license": "ISC"
+}
