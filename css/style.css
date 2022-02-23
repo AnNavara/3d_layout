@@ -16,7 +16,7 @@ html {
 
 .container {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     padding: 5rem 10rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -27,12 +27,14 @@ html {
 
 .deck {
     position: relative;
+    min-height: 25rem;
     display: grid;
 }
 
 .card {
     width: 65%;
     height: 65%;
+    font-size: 1.6rem;
     grid-row: 1 / 1;
     grid-column: 1 / 1;
     box-shadow: 5px 5px 1rem rgba(1, 1, 1, 0.1);
@@ -161,4 +163,13 @@ html {
 
 .deck--9 > .card--3 {
     transform: translateY(-33%) translateX(-33%) scale(0.85);
+}
+
+.working {
+    position: fixed;
+    padding: 0.5rem 2rem;
+    width: 100%;
+    font-size: 1.6rem;
+    color: #fff;
+    background-color: #1a1a1a;
 }
