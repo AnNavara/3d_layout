@@ -4,18 +4,31 @@
     const dot = document.createElement('div');
 
     const getViewportCenter = function () {
-        const x = (document.documentElement.getBoundingClientRect().x + document.documentElement.getBoundingClientRect().width) / 2
-        const y = -document.documentElement.getBoundingClientRect().top + document.documentElement.clientHeight / 2
+        const x = document.documentElement.clientWidth / 2
+        const y = document.documentElement.clientHeight / 2 - document.documentElement.getBoundingClientRect().top
         return [x, y]
     }
 
     const getElementPosition = function (element) {
-        return [element.getBoundingClientRect().x, element.getBoundingClientRect().y]
+        const x = element.getBoundingClientRect().x + element.getBoundingClientRect().width / 2
+        const y = element.getBoundingClientRect().top + element.getBoundingClientRect().height / 2 - document.documentElement.getBoundingClientRect().top
+        return [x, y]
+    }
+
+    const getElementRelativePosition = function (element) {
+        const [x, y] = getElementPosition(element)
+        const [centerX, centerY] = getViewportCenter()
+        const positionText = [];
+
+        x >= centerX ? positionText.push('Right') : positionText.push('Left') 
+        y <= centerY ? positionText.push('Up') : positionText.push('Down')
+
+        return positionText.join(' ') + ' Self Position: ' + y + ' Center: ' + centerY
     }
 
     const updateElementsPosition = function (elements) {
         elements.forEach(e => {
-            e.querySelector('.card').innerHTML = getElementPosition(e).join(' ')
+            e.querySelector('.card').innerHTML = getElementRelativePosition(e);
         })
     }
 
