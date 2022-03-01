@@ -21,7 +21,7 @@ html {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-gap: 5rem;
+    grid-gap: 15rem;
     background-color: rgb(168, 66, 29);
 }
 
@@ -32,8 +32,8 @@ html {
 }
 
 .card {
-    width: 65%;
-    height: 65%;
+    width: 100%;
+    height: 100%;
     font-size: 1.6rem;
     grid-row: 1 / 1;
     grid-column: 1 / 1;
@@ -92,7 +92,7 @@ html {
 .deck--9 {
     align-items: end;
 }
-
+/* 
 .deck--1 > .card--2 {
     transform: translateY(17%) translateX(17%) scale(0.92);
 }
@@ -163,7 +163,7 @@ html {
 
 .deck--9 > .card--3 {
     transform: translateY(-33%) translateX(-33%) scale(0.85);
-}
+} */
 
 .working {
     position: fixed;
