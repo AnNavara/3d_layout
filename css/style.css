@@ -164,12 +164,3 @@ html {
 .deck--9 > .card--3 {
     transform: translateY(-33%) translateX(-33%) scale(0.85);
 } */
-
-.working {
-    position: fixed;
-    padding: 0.5rem 2rem;
-    width: 100%;
-    font-size: 1.6rem;
-    color: #fff;
-    background-color: #1a1a1a;
-}

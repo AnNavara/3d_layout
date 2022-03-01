@@ -1,6 +1,5 @@
 (()=>{
     const decks = document.querySelectorAll('.deck')
-    const header = document.querySelector('.working')
     const container = document.querySelector('.container')
     const dot = document.createElement('div');
 
@@ -40,18 +39,22 @@
     }
 
     const updateElementsPosition = function (elements) {
-        elements.forEach(e => {
-            e.querySelector('.card').innerHTML = getElementRelativePosition(e);
-            translateElement(e.querySelector('.card'))  
+        elements.forEach(deck => {
+            deck.querySelectorAll('.card').forEach(card => {
+                card.textContent = getElementRelativePosition(card).map(e => Math.round(e)).join(' ')
+                if (card.classList.contains('card--1')) translateElement(card, 0)
+                if (card.classList.contains('card--2')) translateElement(card, 7, 0.92)
+                if (card.classList.contains('card--3')) translateElement(card, 14, 0.85)
+            })
         })
     }
 
-    const translateElement = function (element, maxTranslate = '5') {
+    const translateElement = function (element, maxTranslate = '5', scale = '1') {
         const [offsetX, offsetY] = getElementRelativePosition(element);
-        const translateAmountX = (maxTranslate * offsetX) / (document.documentElement.clientWidth / 2)
-        const translateAmountY = (maxTranslate * offsetY) / (document.documentElement.clientHeight / 2)
+        const translateAmountX = ((maxTranslate * offsetX) / (document.documentElement.clientWidth / 2)).toFixed(2)
+        const translateAmountY = ((maxTranslate * offsetY) / (document.documentElement.clientHeight / 2)).toFixed(2)
 
-        element.style.transform = `translateX(${-translateAmountX}rem) translateY(${-translateAmountY}rem)`
+        element.style.transform = `translateX(${-translateAmountX}rem) translateY(${-translateAmountY}rem) scale(${scale})`
     }
 
     const createDot = function (dot) {
@@ -70,14 +73,30 @@
         dot.style.top = getCorrectedViewportCenter()[1] - 20 + 'px'
     }
 
-    createDot(dot)
+    const throttle = (fn, delay) => {
+        let lastCalled = 0;
+        return (...args) => {
+          let now = new Date().getTime();
+          if(now - lastCalled < delay) {
+            return;
+          }
+          lastCalled = now;
+          return fn(...args);
+        }
+    }
+
+    // createDot(dot)
     updateElementsPosition(decks)
-    document.querySelector('.working').innerHTML = getCorrectedViewportCenter().join(' ')
+    updateElementsPosition(decks)
 
     document.addEventListener('scroll', (e) => {
         console.log('updating...')
-        header.innerHTML = getCorrectedViewportCenter().join(' ')
-        updateDot(dot)
-        updateElementsPosition(decks)
+        // updateDot(dot)
+        throttle(updateElementsPosition(decks), 16)
+        // updateElementsPosition(decks)
     })
+
+    // 
+    // START CALCULATING FROM PARENT ELEMENT
+    // 
 })();
