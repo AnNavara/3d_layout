@@ -41,7 +41,6 @@
     const updateElementsPosition = function (elements) {
         elements.forEach(deck => {
             deck.querySelectorAll('.card').forEach(card => {
-                card.textContent = getElementRelativePosition(card).map(e => Math.round(e)).join(' ')
                 if (card.classList.contains('card--1')) translateElement(card, 0)
                 if (card.classList.contains('card--2')) translateElement(card, 7, 0.92)
                 if (card.classList.contains('card--3')) translateElement(card, 14, 0.85)

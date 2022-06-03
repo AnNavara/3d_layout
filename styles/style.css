@@ -1,0 +1,105 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    box-sizing:border-box;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 5rem 10rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 12rem;
+    row-gap: 14rem;
+    background-color: rgb(219, 121, 86);
+}
+
+.deck {
+    position: relative;
+    min-height: 25rem;
+    display: grid;
+}
+
+.card {
+    padding: 1.5rem 2rem;
+    max-height: 35rem;
+    width: 100%;
+    height: 100%;
+    font-size: 1.6rem;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+    display: grid;
+    grid-template-columns: 15rem repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 1rem;
+    color: #505050;
+    cursor: pointer;
+    box-shadow: 5px 5px 1rem rgba(1, 1, 1, 0.1);
+}
+
+.card:hover {
+    z-index: 1000;
+}
+
+.card__title {
+    grid-column: 1 / 5;
+    grid-row: 1 / 2;
+} 
+
+.card__img {
+    grid-column: 1 / 2;
+    grid-row: 2 / 4;
+}
+
+.card__img img {
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.card__subtitle {
+    grid-column: 2 / 5;
+    grid-row: 2 / 3;
+    font-size: 2rem;
+}
+
+.card__descr {
+    grid-column: 2 / 5;
+    grid-row: 3 / 4;
+}
+
+@keyframes oops {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.card--1 {
+    z-index: 100;
+    background-color: rgb(255, 253, 244);
+}
+
+.card--2 {
+    z-index: 10;
+    background-color: rgb(255 252 233);
+}
+
+.card--3 {
+    z-index: 1;
+    background-color: rgb(249 232 197);
+}
