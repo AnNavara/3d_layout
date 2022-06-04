@@ -19,26 +19,39 @@ html {
 .container {
     width: 100%;
     min-height: 100vh;
-    padding: 5rem 10rem;
+    padding: 4rem 4.5rem;
+    padding-bottom: 10rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    column-gap: 12rem;
-    row-gap: 14rem;
+    column-gap: 14rem;
+    row-gap: 16rem;
     background-color: rgb(219, 121, 86);
 }
 
 .deck {
+    min-height: 30rem;
+}
+
+.deck__container {
     position: relative;
-    min-height: 25rem;
-    display: grid;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.deck__container--active {
+    z-index: 10;
 }
 
 .card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding: 1.5rem 2rem;
     max-height: 35rem;
-    width: 100%;
-    height: 100%;
     font-size: 1.6rem;
     grid-row: 1 / 1;
     grid-column: 1 / 1;
@@ -49,11 +62,11 @@ html {
     color: #505050;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 5px 5px 1rem rgba(1, 1, 1, 0.1);
-}
-
-.card:hover {
-    z-index: 1000;
+    box-shadow: 5px 5px 1rem rgba(1, 1, 1, 0.2);
+    transition-property: width, left, top;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    border-radius: 3px;
 }
 
 .card__title {
@@ -83,22 +96,13 @@ html {
     grid-row: 3 / 4;
 }
 
-@keyframes oops {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 .card--1 {
-    z-index: 100;
+    z-index: 3;
     background-color: rgb(255, 253, 244);
 }
 
 .card--2 {
-    z-index: 10;
+    z-index: 2;
     background-color: rgb(255 252 233);
 }
 
