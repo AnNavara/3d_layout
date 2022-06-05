@@ -51,7 +51,7 @@ html {
     left: 0;
     width: 100%;
     padding: 1.5rem 2rem;
-    max-height: 35rem;
+    height: 35rem;
     font-size: 1.6rem;
     grid-row: 1 / 1;
     grid-column: 1 / 1;

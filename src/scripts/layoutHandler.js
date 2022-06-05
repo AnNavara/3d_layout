@@ -51,8 +51,8 @@ const translateElement = (element, maxTranslate = '5', scale = '1') => {
 const translateSelector = (card) => {
     // TODO: Remove magic numbers
     if (card.classList.contains('card--1')) translateElement(card, 0);
-    if (card.classList.contains('card--2')) translateElement(card, 6, 0.9);
-    if (card.classList.contains('card--3')) translateElement(card, 11, 0.82);
+    if (card.classList.contains('card--2')) translateElement(card, 6.5, 0.91);
+    if (card.classList.contains('card--3')) translateElement(card, 12.5, 0.82);
 };
 
 export const updateElementsPosition = (elements) => {
