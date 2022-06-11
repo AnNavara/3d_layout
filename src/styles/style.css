@@ -27,10 +27,11 @@ html {
     column-gap: 14rem;
     row-gap: 16rem;
     background-color: rgb(219, 121, 86);
+    overflow: hidden;
 }
 
 .deck {
-    min-height: 30rem;
+    min-height: 35rem;
 }
 
 .deck__container {

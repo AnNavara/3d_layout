@@ -7,7 +7,7 @@ const decks = document.querySelectorAll('.deck');
 
 // Build layout
 updateElementsPosition(decks);
-const throttled = throttle(updateElementsPosition, 16);
+const throttled = throttle(updateElementsPosition, 15);
 document.addEventListener('scroll', throttled.bind(this, decks));
 
 // Add Hover Handler

@@ -1,4 +1,4 @@
-export const throttle = (fn, delay) => {
+const throttle = (fn, delay) => {
     let isWaiting = false;
     let savedArgs = null;
     let savedThis = null;
@@ -23,4 +23,29 @@ export const throttle = (fn, delay) => {
     };
 };
 
-export default throttle;
+const setStyles = (element, { styles, classes, animationDelay }) => {
+    if (styles) {
+        Object.keys(styles).forEach((key) => {
+            /* eslint-disable-next-line */
+            element.style[key] = styles[key];
+        });
+    }
+    if (classes) {
+        if (animationDelay) {
+            setTimeout(() => {
+                classes.forEach((cssClass) => {
+                    element.classList.toggle(cssClass);
+                });
+            }, animationDelay);
+        } else {
+            classes.forEach((cssClass) => {
+                element.classList.toggle(cssClass);
+            });
+        }
+    }
+};
+
+export {
+    throttle,
+    setStyles,
+};

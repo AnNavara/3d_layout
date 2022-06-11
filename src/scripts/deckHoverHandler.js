@@ -1,26 +1,5 @@
 import { translateSelector } from './layoutHandler';
-
-const setStyles = (element, { styles, classes, animationDelay }) => {
-    if (styles) {
-        Object.keys(styles).forEach((key) => {
-            /* eslint-disable-next-line */
-            element.style[key] = styles[key];
-        });
-    }
-    if (classes) {
-        if (animationDelay) {
-            setTimeout(() => {
-                classes.forEach((cssClass) => {
-                    element.classList.toggle(cssClass);
-                });
-            }, animationDelay);
-        } else {
-            classes.forEach((cssClass) => {
-                element.classList.toggle(cssClass);
-            });
-        }
-    }
-};
+import { setStyles } from './utils';
 
 const setCardsInactive = (cards) => {
     cards.forEach((card) => {
@@ -79,38 +58,30 @@ const setCardActive = (card, boundingBox) => {
     }
 };
 
-const handleDeck = (event, deck) => {
+const handleDeck = (event) => {
     if (!event.currentTarget.classList.contains('deck')) return;
 
-    const container = deck.querySelector('.deck__container');
-    const cards = deck.querySelectorAll('.card');
-    const boundingBox = deck.getBoundingClientRect();
+    const container = event.currentTarget.querySelector('.deck__container');
+    const cards = event.currentTarget.querySelectorAll('.card');
+    const boundingBox = event.currentTarget.getBoundingClientRect();
 
-    const mouseEnter = () => {
+    if (container.parentNode.classList.contains('deck--active')) {
+        container.parentNode.classList.remove('deck--active');
+        container.classList.remove('deck__container--active');
+        setCardsInactive(cards);
+    } else {
         container.parentNode.classList.add('deck--active');
         container.classList.add('deck__container--active');
 
         cards.forEach((card) => {
             setCardActive(card, boundingBox);
         });
-    };
-
-    const mouseLeave = () => {
-        container.parentNode.classList.remove('deck--active');
-        container.classList.remove('deck__container--active');
-        setCardsInactive(cards);
-
-        container.removeEventListener('mouseenter', mouseEnter);
-        container.removeEventListener('mouseleave', mouseLeave);
-    };
-
-    container.addEventListener('mouseenter', mouseEnter);
-    container.addEventListener('mouseleave', mouseLeave);
+    }
 };
 
 const handleDecks = (decks) => {
     decks.forEach((deck) => {
-        deck.addEventListener('mouseenter', (event) => handleDeck(event, deck));
+        deck.addEventListener('click', handleDeck);
     });
 };
 
