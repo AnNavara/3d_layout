@@ -1,12 +1,25 @@
 export const throttle = (fn, delay) => {
-    let lastCalled = 0;
-    return (...args) => {
-        const now = new Date().getTime();
-        if (now - lastCalled < delay) {
-            return undefined;
+    let isWaiting = false;
+    let savedArgs = null;
+    let savedThis = null;
+    return function wrapper(...args) {
+        if (isWaiting) {
+            savedArgs = args;
+            savedThis = this;
+            return;
         }
-        lastCalled = now;
-        return fn(...args);
+
+        fn.apply(this, args);
+
+        isWaiting = true;
+        setTimeout(() => {
+            isWaiting = false;
+            if (savedThis) {
+                wrapper.apply(savedThis, savedArgs);
+                savedThis = null;
+                savedArgs = null;
+            }
+        }, delay);
     };
 };
 
